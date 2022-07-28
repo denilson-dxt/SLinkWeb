@@ -1,16 +1,21 @@
 import { useState } from "react"
+import { useNavigate } from "react-router-dom"
 import signup from "../../api/auth/signup"
 import SignupForm from "../../components/SignupForm/SignupForm"
 
 const Signup = () => {
+    const navigate = useNavigate()
     const [signupErrors, setSignupErrors] = useState([])
     const handleSignup = async (data) => {
         setSignupErrors([])
         console.log(data)
         let res = await signup(data)
         console.log(res)
-        if(res.status == "ERROR"){
+        if (res.status == "ERROR") {
             setSignupErrors(res.errors)
+        } else {
+
+            navigate("/auth/login")
         }
     }
     return (
