@@ -7,6 +7,8 @@ import Header from './components/Header/Header'
 import Signup from './pages/Signup/Signup'
 import { UserContext } from './components/contexts/userContext'
 import checkLogin from './api/auth/checkLogin'
+import Dashboard from './pages/Dashboard/Dashboard'
+import DashboardNavigation from './components/DashboardNavigation/DashboardNavigation'
 
 
 function App() {
@@ -48,8 +50,8 @@ function App() {
           <Route path='/auth/signup' element={<Signup />} />
         </Route>
 
-        <Route path='/dashboard' element={<Fragment><Outlet /></Fragment>}>
-          <Route index element={<h1>Dashboard home</h1>} />
+        <Route path='/dashboard' element={<DashboardNavigation/>}>
+          <Route index element={<Dashboard/>} />
           <Route path='links' element={<h1>Links</h1>} />
         </Route>
 
