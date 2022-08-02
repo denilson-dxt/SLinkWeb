@@ -10,6 +10,7 @@ import checkLogin from './api/auth/checkLogin'
 import Dashboard from './pages/Dashboard/Dashboard'
 import DashboardNavigation from './components/DashboardNavigation/DashboardNavigation'
 import UserLinks from './pages/UserLinks/UserLinks'
+import NewLink from './pages/NewLink/NewLink'
 
 
 function App() {
@@ -61,11 +62,12 @@ function App() {
     )
   else
     return (
-      <div className='h-screen bg-slate-400 flex'>
+      <div className='h-screen bg-slate-700 flex'>
         <Routes>
           <Route path='/dashboard' element={<DashboardNavigation />}>
             <Route index element={<Dashboard />} />
             <Route path='links' element={<UserLinks/>} />
+            <Route path='new-link' element={<NewLink/>} />
           </Route>
           <Route path='*' element={<h1>Not found</h1>} />
 
