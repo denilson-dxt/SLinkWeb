@@ -1,4 +1,5 @@
 import { PencilIcon, TrashIcon } from "@heroicons/react/outline"
+import { Link } from "react-router-dom"
 
 
 const LinksTable = (props) => {
@@ -23,7 +24,11 @@ const LinksTable = (props) => {
                                 <td className="px-6 py-4 text-center">{link.isProtected ? "Yes" : "No"}</td>
                                 <td className="px-6 py-4 text-center">{link.key ? link.key : "None"}</td>
                                 <td className="px-6 py-4 text-left">{link.originalLink}</td>
-                                <td className="px-6 py-4 text-left cursor-pointer"><PencilIcon color="green" /></td>
+                                <td className="px-6 py-4 text-left cursor-pointer">
+                                    <Link to={`/dashboard/edit-link/${link.code}`}>
+                                        <PencilIcon color="green" />
+                                    </Link>
+                                </td>
                                 <td className="px-6 py-4 text-left cursor-pointer"> <TrashIcon color="red" /> </td>
                             </tr>
                         )

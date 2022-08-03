@@ -11,6 +11,7 @@ import Dashboard from './pages/Dashboard/Dashboard'
 import DashboardNavigation from './components/DashboardNavigation/DashboardNavigation'
 import UserLinks from './pages/UserLinks/UserLinks'
 import NewLink from './pages/NewLink/NewLink'
+import EditLink from './pages/EditLink/EditLink'
 
 
 function App() {
@@ -23,7 +24,6 @@ function App() {
       if (userData.status == "OK") {
         setUser(userData.user)
       }
-
       setIsLoading(false)
     }
     let token = localStorage.getItem("userToken")
@@ -68,6 +68,7 @@ function App() {
             <Route index element={<Dashboard />} />
             <Route path='links' element={<UserLinks/>} />
             <Route path='new-link' element={<NewLink/>} />
+            <Route path='edit-link/:code' element={<EditLink/>}/>
           </Route>
           <Route path='*' element={<h1>Not found</h1>} />
 
