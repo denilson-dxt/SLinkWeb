@@ -1,12 +1,15 @@
 import { useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
 import getLinkByCode from "../../api/dashboard/getLinkByCode"
+import updateLink from "../../api/dashboard/updateLink"
 
 
 const EditLink = (props)=>{
+    const [id, setId] = useState("")
     const [link, setLink] = useState("")
     const [key, setKey] = useState("")
     const [isProtected, setIsProtected] = useState(false)
+    const [isActive, setIsActive] = useState(false);
     const [isLoading, setIsLoading] = useState(true)
     const navigate = useNavigate()
     const params = useParams()
@@ -17,20 +20,24 @@ const EditLink = (props)=>{
             if(res.status == "ERROR")
                 return false;
             
+            setId(res.data.id)
             setLink(res.data.originalLink)
             setKey(res.data.key)
             setIsProtected(res.data.isProtected)
             setIsLoading(false)
+
         }
         getLink()
     },[])
 
     const handleSubmit = async () => {
         const data = {
-            OriginalLink: link, Key: key, Isprotected: isProtected
+            
+            id: id, OriginalLink: link, Key: key, Isprotected: isProtected, isActive: isActive,code: null
         }
 
-        const res = await addNewLink(localStorage.getItem("userToken"), data)
+        console.log(data);
+        const res = await updateLink(localStorage.getItem("userToken"), data)
         console.log(res);
         if(res.status == "ERROR"){
             alert("Error, try again, make sure the field Target links has a valid link")

@@ -29,7 +29,7 @@ const LinksTable = (props) => {
                                         <PencilIcon color="green" />
                                     </Link>
                                 </td>
-                                <td className="px-6 py-4 text-left cursor-pointer"> <TrashIcon color="red" /> </td>
+                                <td className="px-6 py-4 text-left cursor-pointer" onClick={()=>props.deleteLink(link)}> <TrashIcon color="red" /> </td>
                             </tr>
                         )
                     })
