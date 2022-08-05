@@ -12,6 +12,7 @@ import DashboardNavigation from './components/DashboardNavigation/DashboardNavig
 import UserLinks from './pages/UserLinks/UserLinks'
 import NewLink from './pages/NewLink/NewLink'
 import EditLink from './pages/EditLink/EditLink'
+import GetLink from './pages/GetLink/GetLink'
 
 
 function App() {
@@ -46,7 +47,7 @@ function App() {
 
 
     return (
-      <div className="App mt-0 p-0">
+      <div className="App mt-0 p-0 h-screen">
 
         <Routes>
 
@@ -54,6 +55,8 @@ function App() {
             <Route index element={<h1>TESTE</h1>} />
             <Route path='/auth/login' element={<Login />} />
             <Route path='/auth/signup' element={<Signup />} />
+
+            <Route path='sl/:code' element={<GetLink/>}/>
           </Route>
 
           <Route path='*' element={<h1>Not found</h1>} />
