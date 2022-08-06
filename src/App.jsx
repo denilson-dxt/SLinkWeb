@@ -13,6 +13,7 @@ import UserLinks from './pages/UserLinks/UserLinks'
 import NewLink from './pages/NewLink/NewLink'
 import EditLink from './pages/EditLink/EditLink'
 import GetLink from './pages/GetLink/GetLink'
+import Home from './pages/Home/Home'
 
 
 function App() {
@@ -47,16 +48,16 @@ function App() {
 
 
     return (
-      <div className="App mt-0 p-0 h-screen">
+      <div className="App mt-0 p-0 h-screen overflow-hidden">
 
         <Routes>
 
           <Route path='/' element={<Header />}>
-            <Route index element={<h1>TESTE</h1>} />
+            <Route index element={<Home/>} />
             <Route path='/auth/login' element={<Login />} />
             <Route path='/auth/signup' element={<Signup />} />
 
-            <Route path='sl/:code' element={<GetLink/>}/>
+            <Route path='sl/:code' element={<GetLink />} />
           </Route>
 
           <Route path='*' element={<h1>Not found</h1>} />
@@ -67,14 +68,19 @@ function App() {
     return (
       <div className='h-screen bg-slate-700 flex'>
         <Routes>
-          <Route path='/dashboard' element={<DashboardNavigation />}>
-            <Route index element={<Dashboard />} />
-            <Route path='links' element={<UserLinks/>} />
-            <Route path='new-link' element={<NewLink/>} />
-            <Route path='edit-link/:code' element={<EditLink/>}/>
-          </Route>
-          <Route path='*' element={<h1>Not found</h1>} />
+          {
+            user ?
+              <Route path='/dashboard' element={<DashboardNavigation />}>
+                <Route index element={<Dashboard />} />
+                <Route path='links' element={<UserLinks />} />
+                <Route path='new-link' element={<NewLink />} />
+                <Route path='edit-link/:code' element={<EditLink />} />
+                <Route path='*' element={<h1>Not found</h1>} />
 
+              </Route>
+              : <Route path='*' element={<h1>Not found</h1>} />
+
+          }
         </Routes>
       </div>
     )

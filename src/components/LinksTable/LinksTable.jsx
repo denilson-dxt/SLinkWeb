@@ -7,7 +7,7 @@ const LinksTable = (props) => {
         <table className="mx-auto mt-4 w-full whitespace-nowrap  bg-white divide-y divide-gray-300 overflow-hidden">
             <thead className="bg-gray-900">
                 <tr className="text-white text-center">
-                    <th className="font-semibold text-sm uppercase px-6 py-4">Code</th>
+                    <th className="font-semibold text-sm uppercase px-6 py-4">Short link</th>
                     <th className="font-semibold text-sm uppercase px-6 py-4">Is protected</th>
                     <th className="font-semibold text-sm uppercase px-6 py-4 text-center">Key</th>
                     <th className="font-semibold text-sm uppercase px-6 py-4 text-left">Original link</th>
@@ -20,7 +20,9 @@ const LinksTable = (props) => {
                     props.links.map(link => {
                         return (
                             <tr>
-                                <td className="px-6 py-4 text-center">{link.code}</td>
+                                <td className="px-6 py-4 text-center">
+                                    <a href={`http://localhost:5173/sl/${link.code}`}>https://localhost:5173/sl/{link.code}</a>
+                                </td>
                                 <td className="px-6 py-4 text-center">{link.isProtected ? "Yes" : "No"}</td>
                                 <td className="px-6 py-4 text-center">{link.key ? link.key : "None"}</td>
                                 <td className="px-6 py-4 text-left">{link.originalLink}</td>
@@ -29,7 +31,7 @@ const LinksTable = (props) => {
                                         <PencilIcon color="green" />
                                     </Link>
                                 </td>
-                                <td className="px-6 py-4 text-left cursor-pointer" onClick={()=>props.deleteLink(link)}> <TrashIcon color="red" /> </td>
+                                <td className="px-6 py-4 text-left cursor-pointer" onClick={() => props.deleteLink(link)}> <TrashIcon color="red" /> </td>
                             </tr>
                         )
                     })
