@@ -14,7 +14,7 @@ const GetLink = (props) => {
 
         const getLink = async () => {
             await new Promise(r => setTimeout(r, 2000))
-            let res = await getLinkByCode(params.code, key)
+            let res = await getLinkByCode(localStorage.getItem("userToken"),params.code, key)
             console.log(res);
             if (res.status == "OK") {
                 if (res.data.status == "Ok")
