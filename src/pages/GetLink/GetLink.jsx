@@ -8,21 +8,25 @@ const GetLink = (props) => {
     const [isLoading, setIsLoading] = useState(true)
     const [link, setLink] = useState(null)
     const [linkNotFound, setLinkNotFound] = useState(false)
+    const [keyRequired, setKeyRequired] = useState(false)
     const [errors, setErrors] = useState([])
     const key = searchParams.get("key") || ""
     useEffect(() => {
 
         const getLink = async () => {
             await new Promise(r => setTimeout(r, 2000))
-            let res = await getLinkByCode(localStorage.getItem("userToken"),params.code, key)
+            let res = await getLinkByCode(localStorage.getItem("userToken"), params.code, key)
             console.log(res);
             if (res.status == "OK") {
                 if (res.data.status == "Ok")
                     setLink(res.data.shortLink)
-                else
+                else if(res.data.errors.find(er => er.includes("found"))){
                     setLinkNotFound(true)
+                }else{
+                    res = JSON.parse(res);
+                }
             } else {
-
+                setKeyRequired(true)
             }
             setIsLoading(false)
         }
@@ -37,7 +41,7 @@ const GetLink = (props) => {
     }
     return (
         <div className="h-full flex align-center justify-center items-center">
-            <div >
+            <div className="w-96 flex align-center justify-center">
                 {
                     isLoading
                         ? <button disabled type="button" className="bg-slate-800 w-40 h-10 rounded text-white">
@@ -52,15 +56,15 @@ const GetLink = (props) => {
                             <div>
                                 <h1 className="text-xl mb-12">Your link is ready</h1>
                                 <button disabled={isLoading} onClick={goToLink} className="w-40 h-10 rounded text-white bg-slate-800">Go to link</button>
-                            
+
                             </div>
-                            : !linkNotFound
-                                ? <form className="flex  flex-col items-center">
-                                    <h1 className="bg-red-500 rounded h-10 flex items-center p-2 w-64">Invalid key or no key given</h1>
-                                    <span className="bg-red-500 rounded flex items-center p-2 w-64 mt-1 mb-2">Ask the key to the owner of the link and paste it down and click on the button bellow</span>
-                                    <input className=" bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded mb-2 focus:ring-blue-500 focus:border-blue-500 block w-64 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Enter key" type="text" name="key" id="" />
+                            : keyRequired
+                                ? <form className="flex w-full flex-col items-center">
+                                    <h1 className="bg-red-500 rounded h-10 flex items-center p-2 w-full">Invalid key or no key given</h1>
+                                    <span className="bg-red-500 rounded flex items-center p-2 w-full mt-1 mb-2">Ask the key to the owner of the link and paste it down and click on the button bellow</span>
+                                    <input className=" bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded mb-2 focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Enter key" type="text" name="key" id="" />
                                     <button
-                                        className="w-64 h-10 rounded text-white bg-slate-800">
+                                        className="w-full h-10 rounded text-white bg-slate-800">
                                         get link
                                     </button>
                                 </form>
