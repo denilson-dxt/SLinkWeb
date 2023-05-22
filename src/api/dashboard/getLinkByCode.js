@@ -1,5 +1,8 @@
+import env from "../../env"
+
 const getLinkByCode = async(token, code)=>{
-    const res = await fetch("https://localhost:7078/api/shorten-link/get?code=" + code, {
+    let api_url = env.apiUrl;
+    const res = await fetch(`${api_url}/api/shorten-link/get?code=` + code, {
         method: "GET",
         headers: {
             "Content-Type": "Application/json",

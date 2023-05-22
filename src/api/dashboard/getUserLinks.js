@@ -1,5 +1,8 @@
+import env from "../../env"
+
 const getUserLinks = async(token)=>{
-    const res = await fetch("https://localhost:7078/api/shorten-link/get-user-short-links", {
+    let api_url = env.apiUrl;
+    const res = await fetch(`${api_url}/api/shorten-link/get-user-short-links`, {
         method: "GET",
         headers: {
             "Content-Type": "Application/json",

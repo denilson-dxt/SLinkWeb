@@ -1,3 +1,4 @@
+import React from 'react'
 import { Fragment, useContext, useState } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
@@ -24,7 +25,7 @@ export default function Header() {
         localStorage.removeItem("userToken")
     }
     return (
-        <Fragment>
+        <>
             <Disclosure as="nav" className="bg-gray-800">
                 {({ open }) => (
                     <>
@@ -183,7 +184,7 @@ export default function Header() {
                 )}
             </Disclosure>
             <Outlet />
-        </Fragment>
+        </>
     )
 }
 

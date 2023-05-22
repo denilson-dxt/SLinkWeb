@@ -4,13 +4,15 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
+    "dev": "env-cmd -f dev.env vite",
+    "build": "env-cmd -f dev.env vite build",
     "preview": "vite preview"
   },
   "dependencies": {
     "@headlessui/react": "^1.6.6",
     "@heroicons/react": "^1.0.6",
+    "dotenv": "^16.0.3",
+    "env-cmd": "^10.1.0",
     "heroicons": "^1.0.6",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

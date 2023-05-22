@@ -1,10 +1,10 @@
 import { HomeIcon, LinkIcon, LogoutIcon, PlusCircleIcon, PlusIcon, PlusSmIcon, UserCircleIcon, UserIcon } from "@heroicons/react/outline"
-import { Fragment } from "react"
+import {  } from "react"
 import { Link, Outlet } from "react-router-dom"
 
 const DashboardNavigation = (props) => {
     return (
-        <Fragment>
+        <>
             <div className="w-48">
                 <nav className="h-full bg-slate-800 pt-1 pl-2">
 
@@ -45,7 +45,7 @@ const DashboardNavigation = (props) => {
                 </nav>
             </div>
             <Outlet />
-        </Fragment>
+        </>
     )
 }
 

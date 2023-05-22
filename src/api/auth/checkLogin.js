@@ -1,5 +1,9 @@
+import env from "../../env";
+
 const checkLogin = async(token)=>{
-    const res = await fetch("https://localhost:7078/api/auth/check-login", {
+    let api_url = env.apiUrl;
+
+    const res = await fetch(`${api_url}/api/auth/check-login`, {
         method: "GET",
         headers: {
             "Content-Type": "Application/json",

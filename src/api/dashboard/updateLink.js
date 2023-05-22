@@ -1,5 +1,9 @@
+import env from "../../env"
+
 const updateLink = async(token, data)=>{
-    const res = await fetch("https://localhost:7078/api/shorten-link/update", {
+    let api_url = env.apiUrl;
+
+    const res = await fetch(`${api_url}/api/shorten-link/update`, {
         method: "put",
         headers: {
             "Content-Type": "application/json",

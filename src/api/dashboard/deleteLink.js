@@ -1,5 +1,8 @@
+import env from "../../env"
+
 const deleteLinkAsync = async(token, code)=>{
-    const res = await fetch("https://localhost:7078/api/shorten-link/delete?code=" + code, {
+    let api_url = env.apiUrl;
+    const res = await fetch(`${api_url}https://localhost:7078/api/shorten-link/delete?code=` + code, {
         method: "delete",
         headers: {
             "Content-Type": "Application/json",
